@@ -18,8 +18,8 @@ class RepositorioApi : Repositorio {
     //private val apiKey = "95e93e4f7a36fc511148468d1774792d" // Key del profe
     private val apiKey = "16a13d7375965235abee7ba1d78bd20a" // Mi Key
 
-    private val cliente = HttpClient(){
-        install(ContentNegotiation){
+    private val cliente = HttpClient() {
+        install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true
             })
@@ -27,46 +27,46 @@ class RepositorioApi : Repositorio {
     }
 
     override suspend fun buscarCiudad(ciudad: String): List<Ciudad> {
-        val respuesta = cliente.get("https://api.openweathermap.org/geo/1.0/direct"){
-            parameter("q",ciudad)
-            parameter("limit",100)
-            parameter("appid",apiKey)
+        val respuesta = cliente.get("https://api.openweathermap.org/geo/1.0/direct") {
+            parameter("q", ciudad)
+            parameter("limit", 100)
+            parameter("appid", apiKey)
         }
 
-        if (respuesta.status == HttpStatusCode.OK){
+        if (respuesta.status == HttpStatusCode.OK) {
             val ciudades = respuesta.body<List<Ciudad>>()
             return ciudades
-        }else{
+        } else {
             throw Exception()
         }
     }
 
     override suspend fun traerClima(lat: Float, lon: Float): Clima {
-        val respuesta = cliente.get("https://api.openweathermap.org/data/2.5/weather"){
-            parameter("lat",lat)
-            parameter("lon",lon)
-            parameter("units","metric")
-            parameter("appid",apiKey)
+        val respuesta = cliente.get("https://api.openweathermap.org/data/2.5/weather") {
+            parameter("lat", lat)
+            parameter("lon", lon)
+            parameter("units", "metric")
+            parameter("appid", apiKey)
         }
-        if (respuesta.status == HttpStatusCode.OK){
+        if (respuesta.status == HttpStatusCode.OK) {
             val clima = respuesta.body<Clima>()
             return clima
-        }else{
+        } else {
             throw Exception()
         }
     }
 
     override suspend fun traerPronostico(nombre: String): List<ListForecast> {
 
-        val respuesta = cliente.get("https://api.openweathermap.org/data/2.5/forecast"){
-            parameter("q",nombre)
-            parameter("units","metric")
-            parameter("appid",apiKey)
+        val respuesta = cliente.get("https://api.openweathermap.org/data/2.5/forecast") {
+            parameter("q", nombre)
+            parameter("units", "metric")
+            parameter("appid", apiKey)
         }
-        if (respuesta.status == HttpStatusCode.OK){
+        if (respuesta.status == HttpStatusCode.OK) {
             val forecast = respuesta.body<ForecastDTO>()
             return forecast.list
-        }else{
+        } else {
             throw Exception()
         }
 

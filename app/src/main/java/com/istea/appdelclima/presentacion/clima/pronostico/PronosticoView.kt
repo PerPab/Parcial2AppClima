@@ -41,7 +41,7 @@ import java.util.Locale
 
 fun convertUnixTimestampToDate(timestamp: Long): String {
     val date = Date(timestamp * 1000) // Convertimos de segundos a milisegundos
-    val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Formato deseado
+    val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()) // Formato deseado
     return format.format(date)
 }
 

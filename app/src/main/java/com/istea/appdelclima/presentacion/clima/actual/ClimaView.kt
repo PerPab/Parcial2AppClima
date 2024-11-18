@@ -246,24 +246,7 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
             }
 
         }
-        /*Button(
-            onClick = {
-                //navController.navigate("pronostico")
-            },
-            colors = ButtonDefaults.buttonColors(
 
-                contentColor = Color.White
-            ),
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Pronóstico Extendido",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }*/
     }
 }
 

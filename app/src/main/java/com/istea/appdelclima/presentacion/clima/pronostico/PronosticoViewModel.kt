@@ -28,7 +28,7 @@ class PronosticoViewModel(
         viewModelScope.launch {
             try{
                 val forecast = respositorio.traerPronostico(nombre).filter {
-                    //TODO agregar logica de filtrado
+
                     true
                 }
                 uiState = PronosticoEstado.Exitoso(forecast)

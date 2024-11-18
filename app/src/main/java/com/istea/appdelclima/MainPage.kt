@@ -22,6 +22,7 @@ fun MainPage() {
         ) {
             CiudadesPage(navHostController)
         }
+
         composable(
             route = "clima?lat={lat}&lon={lon}&nombre={nombre}",
             arguments =  listOf(
@@ -35,6 +36,8 @@ fun MainPage() {
             val nombre = it.arguments?.getString("nombre") ?: ""
             ClimaPage(navHostController, lat = lat, lon = lon, nombre = nombre)
         }
+
+
 
     }
 }

@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.navigation.NavHostController
 import com.istea.appdelclima.R
 import com.istea.appdelclima.repository.modelos.ListForecast
 import com.istea.appdelclima.repository.modelos.MainForecast
@@ -55,7 +56,7 @@ fun PronosticoView(
     }
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp)
             .background(Color(0XFF082032)),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -74,7 +75,7 @@ fun PronosticoView(
 fun EmptyView() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp)
             .background(Color(0XFF082032)),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -96,7 +97,7 @@ fun EmptyView() {
 fun LoadingView() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp)
             .background(Color(0XFF082032)),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -124,7 +125,7 @@ fun LoadingView() {
 fun ErrorView(mensaje: String) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp)
             .background(Color(0XFF082032)),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -151,12 +152,12 @@ fun ErrorView(mensaje: String) {
 fun PronosticoView(climas: List<ListForecast>) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp)
             .background(Color(0XFF082032)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -173,7 +174,7 @@ fun PronosticoView(climas: List<ListForecast>) {
                 )
             )
         }
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         LazyColumn {
             items(items = climas) {
                 Card(
@@ -187,7 +188,7 @@ fun PronosticoView(climas: List<ListForecast>) {
                 ) {
                     Column(
                         modifier = Modifier
-                            .fillMaxSize()
+                            .fillMaxWidth()
                             .padding(6.dp)
 
                     ) {

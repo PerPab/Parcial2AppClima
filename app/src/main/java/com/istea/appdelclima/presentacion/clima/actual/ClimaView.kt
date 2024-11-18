@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -30,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.navigation.NavHostController
 import com.istea.appdelclima.R
 import com.istea.appdelclima.ui.theme.AppDelClimaTheme
 
@@ -39,6 +42,7 @@ fun ClimaView(
     modifier: Modifier = Modifier,
     state: ClimaEstado,
     onAction: (ClimaIntencion) -> Unit
+
 ) {
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
         onAction(ClimaIntencion.actualizarClima)
@@ -63,7 +67,7 @@ fun ClimaView(
             ClimaEstado.Vacio -> LoadingView()
             ClimaEstado.Cargando -> EmptyView()
         }
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
 
@@ -76,7 +80,7 @@ fun EmptyView() {
 fun LoadingView() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -106,7 +110,7 @@ fun LoadingView() {
 fun ErrorView(mensaje: String) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -134,7 +138,7 @@ fun ErrorView(mensaje: String) {
 fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Double, icon: String) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(0.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -153,7 +157,7 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(8.dp)
             ) {
                 Spacer(modifier = androidx.compose.ui.Modifier.width(10.dp))
@@ -242,8 +246,28 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
             }
 
         }
+        /*Button(
+            onClick = {
+                //navController.navigate("pronostico")
+            },
+            colors = ButtonDefaults.buttonColors(
+
+                contentColor = Color.White
+            ),
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = "Pronóstico Extendido",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }*/
     }
 }
+
+
 
 
 

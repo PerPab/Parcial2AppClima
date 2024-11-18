@@ -1,7 +1,16 @@
 package com.istea.appdelclima.presentacion.clima
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.istea.appdelclima.presentacion.clima.actual.ClimaView
@@ -11,6 +20,7 @@ import com.istea.appdelclima.presentacion.clima.pronostico.PronosticoView
 import com.istea.appdelclima.presentacion.clima.pronostico.PronosticoViewModel
 import com.istea.appdelclima.presentacion.clima.pronostico.PronosticoViewModelFactory
 import com.istea.appdelclima.repository.RepositorioApi
+import com.istea.appdelclima.repository.modelos.MainForecast
 import com.istea.appdelclima.router.Enrutador
 
 @Composable
@@ -37,13 +47,18 @@ fun ClimaPage(
         )
     )
 
-    Column {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(0.dp)
+        .background(Color(0XFF082032)),
+        horizontalAlignment = Alignment.CenterHorizontally) {
         ClimaView(
             state = viewModel.uiState,
             onAction = { intencion ->
                 viewModel.ejecutar(intencion)
             }
         )
+
         PronosticoView(
             state = pronosticoViewModel.uiState,
             onAction = { intencion ->
@@ -53,3 +68,6 @@ fun ClimaPage(
     }
 
 }
+
+
+

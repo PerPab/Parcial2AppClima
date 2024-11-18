@@ -35,5 +35,6 @@ fun MainPage() {
             val nombre = it.arguments?.getString("nombre") ?: ""
             ClimaPage(navHostController, lat = lat, lon = lon, nombre = nombre)
         }
+
     }
 }

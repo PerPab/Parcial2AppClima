@@ -1,6 +1,7 @@
 package com.istea.appdelclima.presentacion.clima.actual
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -137,14 +138,18 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
             .padding(0.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Card(
             modifier = Modifier
                 .fillMaxWidth(0.93f)
                 .padding(0.dp)
-                .height(190.dp),
+                .height(190.dp)
+                .clickable {
+                    //navController.navigate("pronostico")
+                },
 
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+
         ) {
             Column(
                 modifier = Modifier
@@ -237,10 +242,12 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
             }
 
         }
+    }
+}
 
 
 
-        Spacer(modifier = Modifier.height(50.dp))
+        /*Spacer(modifier = Modifier.height(50.dp))
         Card(
             modifier = Modifier
                 .fillMaxWidth(0.93f)
@@ -368,7 +375,7 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
 
     }
 
-}
+}*/
 
 
 /*@Preview(showBackground = true)

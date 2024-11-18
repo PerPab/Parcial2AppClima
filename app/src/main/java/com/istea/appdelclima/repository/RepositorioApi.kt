@@ -30,6 +30,7 @@ class RepositorioApi : Repositorio {
         val respuesta = cliente.get("https://api.openweathermap.org/geo/1.0/direct") {
             parameter("q", ciudad)
             parameter("limit", 100)
+            parameter("lang", "es")
             parameter("appid", apiKey)
         }
 
@@ -46,6 +47,7 @@ class RepositorioApi : Repositorio {
             parameter("lat", lat)
             parameter("lon", lon)
             parameter("units", "metric")
+            parameter("lang", "es")
             parameter("appid", apiKey)
         }
         if (respuesta.status == HttpStatusCode.OK) {
@@ -61,6 +63,7 @@ class RepositorioApi : Repositorio {
         val respuesta = cliente.get("https://api.openweathermap.org/data/2.5/forecast") {
             parameter("q", nombre)
             parameter("units", "metric")
+            parameter("lang", "es")
             parameter("appid", apiKey)
         }
         if (respuesta.status == HttpStatusCode.OK) {

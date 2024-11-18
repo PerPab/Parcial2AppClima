@@ -18,11 +18,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -33,8 +35,21 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
 import com.istea.appdelclima.R
 import com.istea.appdelclima.ui.theme.AppDelClimaTheme
+
+
+@Composable
+fun ClimaIcon(imgicon: String) {
+    AsyncImage(
+        model = "http://openweathermap.org/img/w/${imgicon}.png",
+        contentDescription = "Icono del clima",
+        modifier = Modifier.size(50.dp),
+        contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+        colorFilter = ColorFilter.tint(Color.Black)
+    )
+}
 
 
 @Composable
@@ -125,7 +140,7 @@ fun ErrorView(mensaje: String) {
         Spacer(modifier = Modifier.height(50.dp))
         Icon(
             painter = painterResource(id = R.drawable.alerticon),
-            contentDescription = "Icono del clima",
+            contentDescription = "Icono",
             modifier = Modifier.size(80.dp),
             tint = Color(0xFFEEEEEE)
         )
@@ -147,10 +162,8 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
             modifier = Modifier
                 .fillMaxWidth(0.93f)
                 .padding(0.dp)
-                .height(190.dp)
-                .clickable {
-                    //navController.navigate("pronostico")
-                },
+                .height(190.dp),
+
 
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
 
@@ -195,13 +208,8 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
                     )
 
                     Spacer(modifier = androidx.compose.ui.Modifier.width(100.dp))
-
-                    Icon(
-                        painter = painterResource(id = R.drawable.logoapp),
-                        contentDescription = "Icono del clima",
-                        modifier = Modifier.size(55.dp),
-                        tint = Color(0xFFFEC260)
-                    )
+                    ClimaIcon(icon)
+                    //-----------------------------
 
                 }
                 Spacer(modifier = Modifier.height(5.dp))
@@ -251,140 +259,6 @@ fun ClimaView(ciudad: String, temperatura: Double, descripcion: String, st: Doub
 }
 
 
-
-
-
-        /*Spacer(modifier = Modifier.height(50.dp))
-        Card(
-            modifier = Modifier
-                .fillMaxWidth(0.93f)
-                .padding(0.dp)
-                .height(490.dp),
-
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp)
-            ) {
-                Spacer(modifier = androidx.compose.ui.Modifier.width(10.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp)
-                ) {
-                    Text(
-                        text = "Pronóstico extendido",
-                        textAlign = TextAlign.Center,
-                        style = TextStyle(
-                            fontSize = 21.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF334756)
-                        )
-
-                    )
-                }
-                Spacer(modifier = Modifier.height(15.dp))
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .height(40.dp),
-
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Día 1: ",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            color = Color(0xFF334756)
-                        )
-                    )
-
-                }
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .height(40.dp),
-
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Día 2: ",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            color = Color(0xFF334756)
-                        )
-                    )
-
-                }
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .height(40.dp),
-
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Día 3: ",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            color = Color(0xFF334756)
-                        )
-                    )
-
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .height(40.dp),
-
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Día 4: ",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            color = Color(0xFF334756)
-                        )
-                    )
-
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(6.dp)
-                        .height(40.dp),
-
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Día 5: ",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            color = Color(0xFF334756)
-                        )
-                    )
-
-                }
-
-
-            }
-
-        }
-
-    }
-
-}*/
-
-
 /*@Preview(showBackground = true)
 @Composable
 fun ClimaPreviewVacio() {
@@ -405,6 +279,8 @@ fun ClimaPreviewError() {
 @Composable
 fun ClimaPreviewExitoso() {
     AppDelClimaTheme {
-        ClimaView(state = ClimaEstado.Exitoso(ciudad = "Mendoza", temperatura = 0.0, icon = "10d"), onAction = {})
+        ClimaView(
+            state = ClimaEstado.Exitoso(ciudad = "Mendoza", temperatura = 0.0, icon = "10d"),
+            onAction = {})
     }
 }
